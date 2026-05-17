@@ -1,0 +1,8 @@
+<a [routerLink]="['/products', product().id]">
+  <div class="card">
+    <img [src]="product().image" [alt]="product().title" />
+    <h3>{{ product().title }}</h3>
+    <p>{{ product().price | currency }}</p>
+    <span>{{ product().category }}</span>
+  </div>
+</a>

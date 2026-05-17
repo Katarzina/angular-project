@@ -1,0 +1,6 @@
+<div class="search-wrapper">
+  <input [formControl]="searchControl" placeholder="Search products..." />
+  @if (searchControl.value) {
+    <button (click)="clear()">✕</button>
+  }
+</div>

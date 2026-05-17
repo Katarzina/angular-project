@@ -1,0 +1,12 @@
+<app-search-input (searched)="onSearch($event)" />
+@if (loading()) {
+  <app-loading-spinner />
+} @else if (error()) {
+  <p>{{ error() }}</p>
+} @else {
+  <div class="products-grid">
+    @for (product of filteredProducts(); track product.id) {
+      <app-product-card [product]="product" />
+    }
+  </div>
+}
