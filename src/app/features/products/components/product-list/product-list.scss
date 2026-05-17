@@ -1,6 +1,12 @@
 :host {
   display: block;
-  padding: 16px;
+  padding: 24px;
+}
+
+app-search-input {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
 .products-grid {

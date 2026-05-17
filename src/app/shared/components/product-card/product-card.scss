@@ -10,3 +10,9 @@ button {
   margin-top: 8px;
   width: 40%;
 }
+
+h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
