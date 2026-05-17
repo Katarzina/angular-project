@@ -1,0 +1,24 @@
+<div class="categories-page">
+  <div class="categories-tabs">
+    @for (category of categories(); track category) {
+      <button
+        class="tab-btn"
+        [class.active]="selectedCategory() === category"
+        (click)="selectCategory(category)">
+        {{ category }}
+      </button>
+    }
+  </div>
+
+  @if (loading()) {
+    <app-loading-spinner />
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else {
+    <div class="products-grid">
+      @for (product of products(); track product.id) {
+        <app-product-card [product]="product" />
+      }
+    </div>
+  }
+</div>
