@@ -1,8 +1,11 @@
-<a [routerLink]="['/products', product().id]">
-  <div class="card">
-    <img [src]="product().image" [alt]="product().title" />
-    <h3>{{ product().title }}</h3>
-    <p>{{ product().price | currency }}</p>
-    <span>{{ product().category }}</span>
-  </div>
-</a>
+<div class="card-wrapper">
+  <a [routerLink]="['/products', product().id]">
+    <div class="card">
+      <img [src]="product().image" [alt]="product().title" />
+      <h3>{{ product().title | truncate: 30 }}</h3>
+      <p>{{ product().price | currency }}</p>
+      <span>{{ product().category }}</span>
+    </div>
+  </a>
+  <button (click)="addToCart(product())">Add to Cart</button>
+</div>

@@ -3,12 +3,13 @@
 } @else if (error()) {
   <p>{{ error() }}</p>
 } @else {
+  <a routerLink="/products">← Back</a>
   <div class="product-detail">
-    <a routerLink="/products">← Back</a>
     <img [src]="product()!.image" [alt]="product()!.title" />
     <h1>{{ product()!.title }}</h1>
     <p>{{ product()!.price | currency }}</p>
     <p>{{ product()!.category }}</p>
     <p>{{ product()!.description }}</p>
+    <button (click)="addToCart(product()!)">Add to Cart</button>
   </div>
 }

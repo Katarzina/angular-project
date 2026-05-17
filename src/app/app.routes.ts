@@ -1,12 +1,24 @@
 import { Routes } from '@angular/router';
-import { ProductList } from './features/products/components/product-list/product-list';
-import { ProductDetail } from './features/products/components/product-detail/product-detail';
-import { CategoryList } from './features/categories/components/category-list/category-list';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'products', component: ProductList },
-  { path: 'products/:id', component: ProductDetail },
-  { path: 'categories', component: CategoryList },
-  { path: '**', redirectTo: '/products' },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('./features/products/components/product-list/product-list').then((m) => m.ProductList),
+  },
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./features/products/components/product-detail/product-detail').then(
+        (m) => m.ProductDetail,
+      ),
+  },
+  {
+    path: 'categories',
+    loadComponent: () =>
+      import('./features/categories/components/category-list/category-list').then(
+        (m) => m.CategoryList,
+      ),
+  },
 ];

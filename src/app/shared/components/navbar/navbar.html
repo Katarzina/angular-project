@@ -4,4 +4,5 @@
     <a routerLink="/products" routerLinkActive="active">Products</a>
     <a routerLink="/categories" routerLinkActive="active">Categories</a>
   </div>
+  <div class="navbar-cart">🛒 {{ cartCount$ | async }}</div>
 </nav>

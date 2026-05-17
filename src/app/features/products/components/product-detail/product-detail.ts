@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { CurrencyPipe } from '@angular/common';
 import { LoadingSpinner } from '../../../../shared/components/loading-spinner/loading-spinner';
+import { CartService } from '../../../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,8 @@ import { LoadingSpinner } from '../../../../shared/components/loading-spinner/lo
 export class ProductDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
+
   private destroyRef = inject(DestroyRef);
 
   error = signal<string | null>(null);
@@ -23,15 +26,21 @@ export class ProductDetail implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.getProduct(id).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      next: (data) => {
-        this.product.set(data);
-        this.loading.set(false);
-      },
-      error: (err) => {
-        this.error.set(err.message);
-        this.loading.set(false);
-      },
-    });
+    this.productService
+      .getProduct(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data) => {
+          this.product.set(data);
+          this.loading.set(false);
+        },
+        error: (err) => {
+          this.error.set(err.message);
+          this.loading.set(false);
+        },
+      });
+  }
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
   }
 }
